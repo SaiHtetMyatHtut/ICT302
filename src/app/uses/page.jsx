@@ -1,6 +1,35 @@
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
-import { SimpleLayout } from '@/components/SimpleLayout'
+import { AboutLayout } from '@/components/AboutLayout'
+import Link from 'next/link'
+import Image from 'next/image'
+import clsx from 'clsx'
+import portraitImage from '@/images/portrait.jpg'
+import { TwitterIcon } from '@/components/SocialIcons'
+
+function SocialLink({ className, href, children, icon: Icon }) {
+  return (
+    <li className={clsx(className, 'flex')}>
+      <Link
+        href={href}
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+      >
+        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+        <span className="ml-4">{children}</span>
+      </Link>
+    </li>
+  )
+}
+function MailIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
+      />
+    </svg>
+  )
+}
 
 function ToolsSection({ children, ...props }) {
   return (
@@ -25,88 +54,81 @@ function Tool({ title, href, children }) {
 
 export const metadata = {
   title: 'Uses',
-  description: 'Software I use, gadgets I love, and other things I recommend.',
+  description: 'Empowering IT Professionals.',
 }
 
 export default function Uses() {
   return (
-    <SimpleLayout
-      title="Software I use, gadgets I love, and other things I recommend."
-      intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
-    >
-      <div className="space-y-20">
-        <ToolsSection title="Workstation">
-          <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-            I was using an Intel-based 16” MacBook Pro prior to this and the
-            difference is night and day. I’ve never heard the fans turn on a
-            single time, even under the incredibly heavy loads I put it through
-            with our various launch simulations.
+    <AboutLayout>
+      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+        <div className="lg:pl-20">
+          <div className="max-w-xs px-2.5 lg:max-w-none">
+            <Image
+              src={portraitImage}
+              alt=""
+              sizes="(min-width: 1024px) 32rem, 20rem"
+              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+            />
+          </div>
+        </div>
+        <div className="lg:order-first lg:row-span-2">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+            Pro Hub Professional Empowering IT Professionals
+          </h1>
+          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+            <p>
+              Welcome to Pro Hub Professional, where we are committed to empowering IT professionals through comprehensive training and valuable resources. At Patato, we understand the dynamic and ever-evolving nature of the IT landscape, and we strive to be your trusted partner in navigating the challenges and embracing the opportunities in the digital world.
+            </p>
+            <div className="flex felx-row items-center space-x-4">
+              <SocialLink href="#" icon={TwitterIcon}>
+                Follow on Facebook
+              </SocialLink>
+              <SocialLink href="mailto:spencer@planetaria.tech" icon={MailIcon}>
+                info@prohub.tech
+              </SocialLink>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="space-y-20 mt-20">
+        <ToolsSection title="Our Vision">
+          <Tool title="Shaping the Future of IT Excellence in Professional Ways">
+            At Pro Hub Professional, we envision a future where IT professionals are not only adept at navigating the complexities of the digital world but are also leaders and innovators shaping the future of technology. Our vision is to be the premier platform that catalyzes this transformation, inspiring individuals and organizations to achieve unparalleled success in the dynamic field of information technology.
           </Tool>
-          <Tool title="Apple Pro Display XDR (Standard Glass)">
-            The only display on the market if you want something HiDPI and
-            bigger than 27”. When you’re working at planetary scale, every pixel
-            you can get counts.
+          <Tool title="Industry Leadership">
+            Enhance leadership skills to effectively guide IT teams and projects. Foster skills in strategic planning, decision-making, and project management within an IT context.
           </Tool>
-          <Tool title="IBM Model M SSK Industrial Keyboard">
-            They don’t make keyboards the way they used to. I buy these any time
-            I see them go up for sale and keep them in storage in case I need
-            parts or need to retire my main.
+          <Tool title="Continuous Learning and Growth">
+            helping industry leaders improve their IT professional skills. Here are some specific aspects you might consider under this objective Global Impact and Collaboration
+
           </Tool>
-          <Tool title="Apple Magic Trackpad">
-            Something about all the gestures makes me feel like a wizard with
-            special powers. I really like feeling like a wizard with special
-            powers.
-          </Tool>
-          <Tool title="Herman Miller Aeron Chair">
-            If I’m going to slouch in the worst ergonomic position imaginable
-            all day, I might as well do it in an expensive chair.
-          </Tool>
-        </ToolsSection>
-        <ToolsSection title="Development tools">
-          <Tool title="Sublime Text 4">
-            I don’t care if it’s missing all of the fancy IDE features everyone
-            else relies on, Sublime Text is still the best text editor ever
-            made.
-          </Tool>
-          <Tool title="iTerm2">
-            I’m honestly not even sure what features I get with this that aren’t
-            just part of the macOS Terminal but it’s what I use.
-          </Tool>
-          <Tool title="TablePlus">
-            Great software for working with databases. Has saved me from
-            building about a thousand admin interfaces for my various projects
-            over the years.
-          </Tool>
-        </ToolsSection>
-        <ToolsSection title="Design">
-          <Tool title="Figma">
-            We started using Figma as just a design tool but now it’s become our
-            virtual whiteboard for the entire company. Never would have expected
-            the collaboration features to be the real hook.
+          <Tool title="Global Perspectives">
+            Provide content that highlights global IT trends, challenges, and innovations, fostering a broader perspective among industry leaders.
           </Tool>
         </ToolsSection>
-        <ToolsSection title="Productivity">
-          <Tool title="Alfred">
-            It’s not the newest kid on the block but it’s still the fastest. The
-            Sublime Text of the application launcher world.
+        <ToolsSection title="Our Mission">
+          <Tool title="Knowledge, Skills, and Excellence">
+            At the heart of Pro Hub Professional is our unwavering mission to provide top-notch training and resources for IT professionals. We believe that knowledge is the key to success, and our programs are designed to equip you with the skills and insights needed to thrive in the fast-paced and competitive field of information technology.
           </Tool>
-          <Tool title="Reflect">
-            Using a daily notes system instead of trying to keep things
-            organized by topics has been super powerful for me. And with
-            Reflect, it’s still easy for me to keep all of that stuff
-            discoverable by topic even though all of my writing happens in the
-            daily note.
+          <Tool title="Open Access Education">
+            We believe in the democratization of education. Our mission is to break down barriers by providing open access to high-quality educational content, ensuring that knowledge is accessible to anyone, anywhere, regardless of their educational background or geographical location.
           </Tool>
-          <Tool title="SavvyCal">
-            Great tool for scheduling meetings while protecting my calendar and
-            making sure I still have lots of time for deep work during the week.
+          <Tool title="Shared Knowledge Economy">
+            Pro Hub Professional envisions a knowledge economy where the sharing of expertise and insights propels the entire IT community forward. Our mission is to be a catalyst for this shared knowledge ecosystem, facilitating collaboration and collective growth.
           </Tool>
-          <Tool title="Focus">
-            Simple tool for blocking distracting websites when I need to just do
-            the work and get some momentum going.
+        </ToolsSection>
+        <ToolsSection title="Our Values">
+          <Tool title="Excellence">
+            We are committed to the pursuit of excellence in all that we do. From the quality of our training programs to the resources we provide, we strive for the highest standards to empower IT professionals with the knowledge and skills needed for success.
+          </Tool>
+          <Tool title="Integrity">
+            Integrity is at the core of our operations. We conduct ourselves with honesty, transparency, and ethical behavior. We believe in building trust with our community, fostering an environment where individuals can rely on us for accurate information and valuable insights.
+          </Tool>
+          <Tool title="Innovation">
+            We embrace innovation as a driving force for progress. Our commitment to fostering a culture of creativity and forward-thinking ensures that we stay at the forefront of technological advanceme
           </Tool>
         </ToolsSection>
       </div>
-    </SimpleLayout>
+    </AboutLayout>
   )
 }
